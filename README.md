@@ -1,6 +1,6 @@
 # 微信 ChatGPT 自动回复机器人
 
-
+基于 `wechaty` 和 `chatgpt` 的微信自动回复机器人 `Node.js` 脚本。
 
 # 部署步骤
 
