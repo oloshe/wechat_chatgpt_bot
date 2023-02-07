@@ -39,6 +39,8 @@ const cacheData = {};
 
 const prefix = process.env.RESPONSE_PREFIX || '';
 
+let userId = null;
+
 wechaty
     .on('scan', (qrcode, status) => {
         // https://wechaty.js.org/qrcode/${encodeURIComponent(qrcode)}
@@ -47,7 +49,10 @@ wechaty
             console.log(codeTerminalImg);
         });
     })
-    .on('login', (user) => console.log('Login successfully! ' + user))
+    .on('login', (user) => {
+        console.log('Login successfully! ' + user);
+        userId = user.id;
+    })
     .on('message', async msg => {
         const talker = msg.talker()
         const listener = msg.listener();
@@ -70,8 +75,11 @@ wechaty
             data.conversationId = response.conversationId;
             data.messageId = response.messageId;
             console.log(`<<< ${response.response}`);
-            // msg.say(prefix + response.response);
-            listener.say(prefix + response.response);
+            if (talker.id === userId) {
+                listener.say(prefix + response.response);
+            } else {
+                msg.say(prefix + response.response);
+            }
         }
     });
 
