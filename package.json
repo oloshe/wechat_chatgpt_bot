@@ -1,0 +1,9 @@
+{
+  "type": "module",
+  "dependencies": {
+    "@waylaidwanderer/chatgpt-api": "^1.10.0",
+    "keyv-file": "^0.2.0",
+    "qrcode-terminal": "^0.12.0",
+    "wechaty": "^1.20.2"
+  }
+}
